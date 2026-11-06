@@ -4,6 +4,7 @@
 #   sh scripts/run_all.sh             # + CodeBERT full and LoRA
 #   sh scripts/run_all.sh --qwen      # also Qwen-7B prompting and MLX LoRA (Apple Silicon only, hours)
 #   Add --codebert=full or --codebert=lora to run only one CodeBERT configuration (default: both).
+#   Add --tfidf=svm to run only LinearSVC (standard and balanced) among the TF-IDF baselines.
 #
 # THESIS_CSV / THESIS_OUT (absolute paths) redirect input and all outputs; see src/common.py.
 #   THESIS_CSV=$PWD/data/v2/neutral_all.csv THESIS_OUT=$PWD/experiments/neutral_all sh scripts/run_all.sh
@@ -21,7 +22,7 @@ mkdir -p "$LOGS"
 # Plain sh has no pipefail, so write logs with redirection to keep failures fatal.
 step() { log=$1; shift; echo "== $*"; "$PY" "$@" > "$LOGS/$log.log" 2>&1 || { tail -20 "$LOGS/$log.log"; exit 1; }; }
 
-QUICK=0; QWEN=0; CB="full lora"
+QUICK=0; QWEN=0; CB="full lora"; TFIDF=all
 for a in "$@"; do
   case "$a" in
     --quick) QUICK=1 ;;
@@ -29,12 +30,13 @@ for a in "$@"; do
     --codebert=full) CB="full" ;;
     --codebert=lora) CB="lora" ;;
     --codebert=both) CB="full lora" ;;
+    --tfidf=all|--tfidf=logreg|--tfidf=svm|--tfidf=rf) TFIDF=${a#--tfidf=} ;;
     *) echo "unknown option $a"; exit 2 ;;
   esac
 done
 
 step prepare_data prepare_data.py
-step tfidf tfidf_baselines.py
+step tfidf tfidf_baselines.py --classifier "$TFIDF"
 if [ "$QUICK" = 0 ]; then
   for m in $CB; do step codebert_$m codebert_finetune.py --mode $m $CODEBERT_ARGS; done
 fi

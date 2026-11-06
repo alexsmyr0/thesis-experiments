@@ -47,8 +47,8 @@ THESIS_CSV=$PWD/data/v2/neutral_all.csv THESIS_OUT=$PWD/experiments/neutral_all 
    The archive creates a new `kaggle_<timestamp>/` folder, so existing Mac results stay intact.
    Commit its results, logs, `run_metadata.json`, and `pip_freeze.txt`; generated splits are ignored.
 
-The notebook clones this repo, installs `requirements.txt`, checks dependencies and CUDA, then runs `scripts/run_all.sh --codebert=both` for
-each dataset in `DATASETS`, deletes the checkpoints, and zips the results. Each run records its source commit,
+The notebook clones this repo, installs `requirements.txt`, checks dependencies and CUDA, then runs `scripts/run_all.sh --codebert=lora --tfidf=svm` for
+`control_unmodified`, `only_modules` and `only_newlines` (configured in `DATASETS`), deletes the checkpoints, and zips the results. Each run records its source commit,
 settings, GPU names and installed package versions. Qwen/MLX steps do not run on Kaggle.
 
 Notes on comparing runs:

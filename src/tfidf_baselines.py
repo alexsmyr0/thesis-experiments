@@ -3,6 +3,8 @@
 Settings copied from upstream src/simple_baseline.py.
 """
 
+import argparse
+
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -20,11 +22,17 @@ CLASSIFIERS = {
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--classifier", choices=["all", *CLASSIFIERS], default="all",
+                        help="run one classifier with standard and balanced class weights")
+    args = parser.parse_args()
     train = pd.read_csv(DATA_DIR / "train.csv")
     test = pd.read_csv(DATA_DIR / "test.csv")
     labels = sorted(train["primary_label"].unique())
 
     for name, make in CLASSIFIERS.items():
+        if args.classifier != "all" and name != args.classifier:
+            continue
         for cw in (None, "balanced"):
             pipe = Pipeline([
                 ("tfidf", TfidfVectorizer(max_features=10_000, ngram_range=(1, 2),
