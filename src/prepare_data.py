@@ -3,15 +3,16 @@
 Same steps as upstream: strip whitespace, drop leaked header rows, split
 Primary/SubLabel, remove spaces from the primary label ("Syntax Error" ->
 "SyntaxError"), dedupe on SHA-256 of whitespace-normalised code, then two
-stratified train_test_split calls with seed 42.
+stratified train_test_split calls with THESIS_SEED (default 42).
 """
 
 import hashlib
+import json
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from common import DATA_DIR, RAW_CSV, SEED
+from common import DATA_DIR, OUT_DIR, RAW_CSV, SEED
 
 
 def fingerprint(code):
@@ -22,6 +23,7 @@ def main():
     df = pd.read_csv(RAW_CSV, encoding="utf-8-sig")
     df.columns = [c.strip().lower() for c in df.columns]
     df = df.rename(columns={"output/fix": "output"})
+    source_rows = pd.Series(range(len(df)), index=df.index)
     print(f"Loaded {len(df)} rows")
 
     df = df.dropna(subset=["code", "label"]).copy()
@@ -36,7 +38,9 @@ def main():
     df["sublabel"] = df["label"].apply(lambda x: x.split("/", 1)[1].strip() if "/" in x else None)
 
     before = len(df)
-    df = df.loc[~df["code"].map(fingerprint).duplicated()].reset_index(drop=True)
+    df = df.loc[~df["code"].map(fingerprint).duplicated()]
+    source_rows = source_rows.loc[df.index].reset_index(drop=True)
+    df = df.reset_index(drop=True)
     print(f"Removed {before - len(df)} duplicate snippets -> {len(df)} samples")
 
     train, test = train_test_split(df, test_size=0.15, random_state=SEED, stratify=df["primary_label"])
@@ -44,6 +48,14 @@ def main():
                                   stratify=train["primary_label"])
 
     DATA_DIR.mkdir(parents=True, exist_ok=True)
+    (OUT_DIR / "split_manifest.json").write_text(json.dumps({
+        "split_seed": SEED,
+        "source_csv": RAW_CSV.name,
+        "source_sha256": hashlib.sha256(RAW_CSV.read_bytes()).hexdigest(),
+        "row_numbering": "zero-based data row in source CSV (header excluded)",
+        "splits": {name: source_rows.loc[part.index].tolist()
+                   for name, part in (("train", train), ("val", val), ("test", test))},
+    }, indent=2) + "\n")
     df.to_csv(DATA_DIR / "full_clean.csv", index=False)
     for name, part in (("train", train), ("val", val), ("test", test)):
         part.reset_index(drop=True).to_csv(DATA_DIR / f"{name}.csv", index=False)

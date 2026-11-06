@@ -1,0 +1,10 @@
+seed,dataset,model,accuracy_delta_pp,macro_f1_delta_pp
+42,only_modules,codebert_lora,-1.914893617021285,-2.6133578371143384
+42,only_modules,tfidf_svm,-6.595744680851068,-11.276048528471861
+42,only_modules,tfidf_svm_balanced,-6.17021276595745,-10.970384325064497
+42,only_newlines,codebert_lora,-2.9787234042553234,-5.401412342291545
+42,only_newlines,tfidf_svm,0.0,0.0
+42,only_newlines,tfidf_svm_balanced,0.0,0.0
+42,modules_newlines,codebert_lora,-4.042553191489362,-7.021833264143451
+42,modules_newlines,tfidf_svm,-6.595744680851068,-11.276048528471861
+42,modules_newlines,tfidf_svm_balanced,-6.17021276595745,-10.970384325064497

@@ -47,9 +47,10 @@ THESIS_CSV=$PWD/data/v2/neutral_all.csv THESIS_OUT=$PWD/experiments/neutral_all 
    The archive creates a new `kaggle_<timestamp>/` folder, so existing Mac results stay intact.
    Commit its results, logs, `run_metadata.json`, and `pip_freeze.txt`; generated splits are ignored.
 
-The notebook clones this repo, installs `requirements.txt`, checks dependencies and CUDA, then runs `scripts/run_all.sh --codebert=lora --tfidf=svm` for
-`modules_newlines` (configured in `DATASETS`), deletes the checkpoints, and zips the results. This combined variant retains comments and reuses the same rows and module names as `only_modules`; the existing newline exemptions still apply.
-Kaggle Version 2 ran `control_unmodified`, `only_modules` and `only_newlines` with the same settings. Each run records its source commit,
+The notebook clones this repo, installs `requirements.txt`, checks dependencies and CUDA, then runs `scripts/run_seed_sweep.py --seeds 7 13`.
+For each seed it runs LoRA and both LinearSVC variants on `control_unmodified`, `only_modules`, `only_newlines` and `modules_newlines`, verifies identical source-row splits across variants, deletes checkpoints and zips the results.
+Comments and all input CSVs remain unchanged. `THESIS_SEED` controls splitting/training (default 42); new metrics record both seeds and save test predictions.
+The [organized study](experiments/module_newline_seeds/README.md) holds seed-42 results from Kaggle Versions 2–3 and imports subsequent seed archives with per-seed results and summaries. Each run records its source commit,
 settings, GPU names and installed package versions. Qwen/MLX steps do not run on Kaggle.
 
 Notes on comparing runs:

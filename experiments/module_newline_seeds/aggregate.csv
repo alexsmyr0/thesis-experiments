@@ -1,0 +1,13 @@
+dataset,model,n_seeds,accuracy_mean,accuracy_sample_sd,macro_f1_mean,macro_f1_sample_sd
+control_unmodified,codebert_lora,1,0.9936170212765958,,0.9916411537081735,
+control_unmodified,tfidf_svm,1,0.951063829787234,,0.9353598332148371,
+control_unmodified,tfidf_svm_balanced,1,0.948936170212766,,0.9297260303979357,
+only_modules,codebert_lora,1,0.9744680851063829,,0.9655075753370301,
+only_modules,tfidf_svm,1,0.8851063829787233,,0.8225993479301185,
+only_modules,tfidf_svm_balanced,1,0.8872340425531915,,0.8200221871472907,
+only_newlines,codebert_lora,1,0.9638297872340426,,0.9376270302852581,
+only_newlines,tfidf_svm,1,0.951063829787234,,0.9353598332148371,
+only_newlines,tfidf_svm_balanced,1,0.948936170212766,,0.9297260303979357,
+modules_newlines,codebert_lora,1,0.9531914893617022,,0.921422821066739,
+modules_newlines,tfidf_svm,1,0.8851063829787233,,0.8225993479301185,
+modules_newlines,tfidf_svm_balanced,1,0.8872340425531915,,0.8200221871472907,

@@ -21,7 +21,9 @@ DATA_DIR = OUT_DIR / "data"
 RESULTS_DIR = OUT_DIR / "results"
 CHECKPOINTS_DIR = OUT_DIR / "checkpoints"
 LOGS_DIR = OUT_DIR / "logs"
-SEED = 42
+SEED = int(os.environ.get("THESIS_SEED", "42"))
+if not 0 <= SEED < 2**32:
+    raise ValueError("THESIS_SEED must be an integer in [0, 2**32)")
 
 
 def compute_metrics(y_true, y_pred, labels):
@@ -39,8 +41,17 @@ def compute_metrics(y_true, y_pred, labels):
 def save_run(tag, metrics, y_true, y_pred, labels, extra=None):
     """Write metrics JSON and a confusion-matrix PNG for one run."""
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    payload = {"run": tag, **(extra or {}), **metrics}
+    payload = {"run": tag, "split_seed": SEED, "training_seed": SEED, **(extra or {}), **metrics}
     (RESULTS_DIR / f"{tag}_metrics.json").write_text(json.dumps(payload, indent=2, default=str))
+    manifest_path = OUT_DIR / "split_manifest.json"
+    if manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text())
+        rows = manifest["splits"]["test"]
+        assert len(rows) == len(y_true) == len(y_pred)
+        (RESULTS_DIR / f"{tag}_predictions.json").write_text(json.dumps([
+            {"source_row": row, "true": truth, "predicted": pred}
+            for row, truth, pred in zip(rows, y_true, y_pred)
+        ], indent=2))
 
     fig, ax = plt.subplots(figsize=(7, 5.5))
     sns.heatmap(metrics["confusion_matrix"], annot=True, fmt="d", cmap="Blues",
