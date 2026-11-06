@@ -1,0 +1,15 @@
+{
+  "rows": 3133,
+  "rows_changed_from_only_modules": 1368,
+  "whitespace_exempt_rows": 145,
+  "rows_with_newlines": 420,
+  "comments_removed": false,
+  "module_names_reused_from": "only_modules.csv",
+  "row_order_labels_outputs_match_control": true,
+  "non_whitespace_characters_match_only_modules": true,
+  "sha256": {
+    "control_unmodified.csv": "571ed32af84dc020bdb2e3c6a97319dc223b4179db1884d834f96f8f3a5a03c1",
+    "only_modules.csv": "f8ffafff353b70bc4c2d9524a9152f7682f1fd3304c8616d7c3ff53f5a3a613a",
+    "modules_newlines.csv": "cc2294f1a7ee2b3bdf7727fd798d7e3062c7e99a3e66355a9bc3aa2bfa9ce83d"
+  }
+}

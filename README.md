@@ -48,7 +48,8 @@ THESIS_CSV=$PWD/data/v2/neutral_all.csv THESIS_OUT=$PWD/experiments/neutral_all 
    Commit its results, logs, `run_metadata.json`, and `pip_freeze.txt`; generated splits are ignored.
 
 The notebook clones this repo, installs `requirements.txt`, checks dependencies and CUDA, then runs `scripts/run_all.sh --codebert=lora --tfidf=svm` for
-`control_unmodified`, `only_modules` and `only_newlines` (configured in `DATASETS`), deletes the checkpoints, and zips the results. Each run records its source commit,
+`modules_newlines` (configured in `DATASETS`), deletes the checkpoints, and zips the results. This combined variant retains comments and reuses the same rows and module names as `only_modules`; the existing newline exemptions still apply.
+Kaggle Version 2 ran `control_unmodified`, `only_modules` and `only_newlines` with the same settings. Each run records its source commit,
 settings, GPU names and installed package versions. Qwen/MLX steps do not run on Kaggle.
 
 Notes on comparing runs:
