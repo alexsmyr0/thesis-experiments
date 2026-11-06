@@ -1,0 +1,16 @@
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 5019.78it/s]
+  50/499  0.79/s  ~568s left
+  100/499  0.84/s  ~474s left
+  150/499  0.80/s  ~437s left
+  200/499  0.81/s  ~370s left
+  250/499  0.82/s  ~305s left
+  300/499  0.83/s  ~239s left
+  350/499  0.85/s  ~176s left
+  400/499  0.84/s  ~118s left
+  450/499  0.55/s  ~88s left
+[prompting_zeroshot] accuracy=0.5010 macro_f1=0.3720
+    Perfect        F1=0.656
+    SecurityError  F1=0.692
+    SemanticError  F1=0.062
+    StyleError     F1=0.203
+    SyntaxError    F1=0.247

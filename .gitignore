@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints/
+
+# Big or regenerable: model weights, and the train/val/test splits that prepare_data.py rebuilds
+experiments/*/checkpoints/
+experiments/*/data/
+
+# Personal notes, not for the public repo
+THESIS_HANDOFF.md

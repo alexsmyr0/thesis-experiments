@@ -1,0 +1,133 @@
+{
+  "run": "codebert_lora",
+  "trainable_params": 1184261,
+  "total_params": 125833738,
+  "lr": 0.0005,
+  "epochs": 6,
+  "max_length": 256,
+  "device": "mps",
+  "val_by_epoch": [
+    {
+      "epoch": 1.0,
+      "eval_accuracy": 0.9553191489361702,
+      "eval_macro_f1": 0.9646809885241898
+    },
+    {
+      "epoch": 2.0,
+      "eval_accuracy": 0.9723404255319149,
+      "eval_macro_f1": 0.977692171577548
+    },
+    {
+      "epoch": 3.0,
+      "eval_accuracy": 0.9872340425531915,
+      "eval_macro_f1": 0.9918382913806255
+    },
+    {
+      "epoch": 4.0,
+      "eval_accuracy": 0.9872340425531915,
+      "eval_macro_f1": 0.9913970548206217
+    },
+    {
+      "epoch": 5.0,
+      "eval_accuracy": 0.9914893617021276,
+      "eval_macro_f1": 0.9945588609204169
+    },
+    {
+      "epoch": 6.0,
+      "eval_accuracy": 0.9893617021276596,
+      "eval_macro_f1": 0.9931850751021708
+    }
+  ],
+  "best_checkpoint": "/Users/alexsmyro/dev/Medcollege/Thesis/experiments/control_unmodified/checkpoints/codebert_lora/checkpoint-690",
+  "accuracy": 0.9872340425531915,
+  "macro_f1": 0.9875996288946298,
+  "per_class": {
+    "Perfect": {
+      "precision": 0.9950980392156863,
+      "recall": 0.9806763285024155,
+      "f1-score": 0.9878345498783455,
+      "support": 207.0
+    },
+    "SecurityError": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 78.0
+    },
+    "SemanticError": {
+      "precision": 0.972972972972973,
+      "recall": 1.0,
+      "f1-score": 0.9863013698630136,
+      "support": 36.0
+    },
+    "StyleError": {
+      "precision": 0.9658119658119658,
+      "recall": 0.9912280701754386,
+      "f1-score": 0.9783549783549783,
+      "support": 114.0
+    },
+    "SyntaxError": {
+      "precision": 1.0,
+      "recall": 0.9714285714285714,
+      "f1-score": 0.9855072463768116,
+      "support": 35.0
+    },
+    "accuracy": 0.9872340425531915,
+    "macro avg": {
+      "precision": 0.986776595600125,
+      "recall": 0.9886665940212851,
+      "f1-score": 0.9875996288946298,
+      "support": 470.0
+    },
+    "weighted avg": {
+      "precision": 0.987478479249443,
+      "recall": 0.9872340425531915,
+      "f1-score": 0.9872634516926423,
+      "support": 470.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      203,
+      0,
+      0,
+      4,
+      0
+    ],
+    [
+      0,
+      78,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      36,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      113,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      34
+    ]
+  ],
+  "labels": [
+    "Perfect",
+    "SecurityError",
+    "SemanticError",
+    "StyleError",
+    "SyntaxError"
+  ]
+}

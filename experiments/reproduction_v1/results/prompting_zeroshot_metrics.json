@@ -1,0 +1,98 @@
+{
+  "run": "prompting_zeroshot",
+  "model": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit",
+  "eval_seconds": 942.9568378925323,
+  "unparsed_outputs_defaulted_to_Perfect": 0,
+  "few_shot_examples": 0,
+  "accuracy": 0.501002004008016,
+  "macro_f1": 0.3720308686035653,
+  "per_class": {
+    "Perfect": {
+      "precision": 0.5445859872611465,
+      "recall": 0.8260869565217391,
+      "f1-score": 0.6564299424184261,
+      "support": 207.0
+    },
+    "SecurityError": {
+      "precision": 0.8653846153846154,
+      "recall": 0.5769230769230769,
+      "f1-score": 0.6923076923076923,
+      "support": 78.0
+    },
+    "SemanticError": {
+      "precision": 0.4,
+      "recall": 0.03333333333333333,
+      "f1-score": 0.06153846153846154,
+      "support": 60.0
+    },
+    "StyleError": {
+      "precision": 1.0,
+      "recall": 0.11304347826086956,
+      "f1-score": 0.203125,
+      "support": 115.0
+    },
+    "SyntaxError": {
+      "precision": 0.16521739130434782,
+      "recall": 0.48717948717948717,
+      "f1-score": 0.24675324675324675,
+      "support": 39.0
+    },
+    "accuracy": 0.501002004008016,
+    "macro avg": {
+      "precision": 0.5950375987900219,
+      "recall": 0.40731326644370125,
+      "f1-score": 0.3720308686035653,
+      "support": 499.0
+    },
+    "weighted avg": {
+      "precision": 0.6526508569617773,
+      "recall": 0.501002004008016,
+      "f1-score": 0.45402015510280264,
+      "support": 499.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      171,
+      1,
+      0,
+      0,
+      35
+    ],
+    [
+      31,
+      45,
+      0,
+      0,
+      2
+    ],
+    [
+      36,
+      2,
+      2,
+      0,
+      20
+    ],
+    [
+      57,
+      3,
+      3,
+      13,
+      39
+    ],
+    [
+      19,
+      1,
+      0,
+      0,
+      19
+    ]
+  ],
+  "labels": [
+    "Perfect",
+    "SecurityError",
+    "SemanticError",
+    "StyleError",
+    "SyntaxError"
+  ]
+}

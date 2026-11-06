@@ -1,0 +1,131 @@
+Source rows: 3337
+Dropped as empty after fixes: 0
+Dropped as duplicates once all fixes are applied: 204 (duplicate groups with conflicting labels: 0)
+Rows in every v2 dataset: 3133
+Class counts kept (original -> v2):
+               original    v2
+Label                        
+Perfect            1378  1378
+StyleError          771   762
+SecurityError       519   519
+SemanticError       400   238
+SyntaxError         269   236
+Wrote control_unmodified.csv (3133 rows, original text)
+
+Wrote neutral_all.csv  (3133 rows, 3133 rows differ from the original)
+
+Wrote only_modules.csv  (3133 rows, 3132 rows differ from the original)
+
+Wrote only_comments.csv  (3133 rows, 332 rows differ from the original)
+
+Wrote only_newlines.csv  (3133 rows, 1318 rows differ from the original)
+
+=== Sanity checks ===
+neutral_all: labels unchanged=True; empty rows=0; SyntaxError rows whose brace balance changed: 0; rows containing 'module' by class: {'Perfect': 1.0, 'SecurityError': 1.0, 'SemanticError': 1.0, 'StyleError': 1.0, 'SyntaxError': 1.0}
+only_modules: labels unchanged=True; empty rows=0; SyntaxError rows whose brace balance changed: 0; rows containing 'module' by class: {'Perfect': 1.0, 'SecurityError': 1.0, 'SemanticError': 1.0, 'StyleError': 1.0, 'SyntaxError': 1.0}
+only_comments: labels unchanged=True; empty rows=0; SyntaxError rows whose brace balance changed: 0
+only_newlines: labels unchanged=True; empty rows=0; SyntaxError rows whose brace balance changed: 0
+Rows with a // comment that could NOT be stripped because the row is a single line: 50
+
+=== One example per variant (Security row, then Perfect row) ===
+
+##### original SecurityError:
+module security::pause {
+  public fun emergency_withdraw<T>(balance: &mut Balance<T>, ctx: &mut TxContext) {
+  let amount = balance::value(balance);
+  let withdrawn = balance::split(balance, amount);
+  transfer::public_transfer(coin::from_balance(withdrawn, ctx), tx_context::sender(ctx));
+  }
+ }
+
+----- neutral_all:
+module daxsafi::lusadax { public fun emergency_withdraw<T>(balance: &mut Balance<T>, ctx: &mut TxContext) { let amount = balance::value(balance); let withdrawn = balance::split(balance, amount); transfer::public_transfer(coin::from_balance(withdrawn, ctx), tx_context::sender(ctx)); } }
+
+----- only_modules:
+module fituri::vomelgor {
+  public fun emergency_withdraw<T>(balance: &mut Balance<T>, ctx: &mut TxContext) {
+  let amount = balance::value(balance);
+  let withdrawn = balance::split(balance, amount);
+  transfer::public_transfer(coin::from_balance(withdrawn, ctx), tx_context::sender(ctx));
+  }
+ }
+
+----- only_comments:
+module security::pause {
+  public fun emergency_withdraw<T>(balance: &mut Balance<T>, ctx: &mut TxContext) {
+  let amount = balance::value(balance);
+  let withdrawn = balance::split(balance, amount);
+  transfer::public_transfer(coin::from_balance(withdrawn, ctx), tx_context::sender(ctx));
+  }
+ }
+
+----- only_newlines:
+module security::pause { public fun emergency_withdraw<T>(balance: &mut Balance<T>, ctx: &mut TxContext) { let amount = balance::value(balance); let withdrawn = balance::split(balance, amount); transfer::public_transfer(coin::from_balance(withdrawn, ctx), tx_context::sender(ctx)); } }
+
+##### original Perfect:
+public struct UpgradeReceipt { /// (Immutable) ID of the UpgradeCap this originated from. cap: ID, /// (Immutable) ID of the package after it was upgraded. package: ID, }
+
+----- neutral_all:
+module vozenba::gorsasa { public struct UpgradeReceipt { /// (Immutable) ID of the UpgradeCap this originated from. cap: ID, /// (Immutable) ID of the package after it was upgraded. package: ID, } }
+
+----- only_modules:
+module zenpasa::hugorne { public struct UpgradeReceipt { /// (Immutable) ID of the UpgradeCap this originated from. cap: ID, /// (Immutable) ID of the package after it was upgraded. package: ID, } }
+
+----- only_comments:
+public struct UpgradeReceipt { /// (Immutable) ID of the UpgradeCap this originated from. cap: ID, /// (Immutable) ID of the package after it was upgraded. package: ID, }
+
+----- only_newlines:
+public struct UpgradeReceipt { /// (Immutable) ID of the UpgradeCap this originated from. cap: ID, /// (Immutable) ID of the package after it was upgraded. package: ID, }
+
+--- audit: ORIGINAL (same rows) (3133 rows)
+               has_module  has_newline  has_//comment  median_chars
+p                                                                  
+Perfect              0.00         0.08           0.00          97.5
+SecurityError        1.00         1.00           0.32         236.0
+SemanticError        1.00         1.00           0.00         167.5
+StyleError           0.02         0.47           0.13          76.5
+SyntaxError          1.00         1.00           0.00          78.0
+  LEAK SecurityError: 3 tokens on >=95% of the class and in no other class, e.g. ['module security', 'security', 'security :']
+  (no 'LEAK' lines = no word/word-pair that is on >=95% of a class and absent elsewhere)
+
+--- audit: neutral_all (3133 rows)
+               has_module  has_newline  has_//comment  median_chars
+p                                                                  
+Perfect               1.0          0.0           0.00         125.0
+SecurityError         1.0          0.0           0.00         201.0
+SemanticError         1.0          0.0           0.00         154.0
+StyleError            1.0          0.3           0.07         101.0
+SyntaxError           1.0          0.0           0.00          61.0
+  (no 'LEAK' lines = no word/word-pair that is on >=95% of a class and absent elsewhere)
+
+--- audit: only_modules (3133 rows)
+               has_module  has_newline  has_//comment  median_chars
+p                                                                  
+Perfect               1.0         0.08           0.00         125.0
+SecurityError         1.0         1.00           0.32         229.0
+SemanticError         1.0         1.00           0.00         164.0
+StyleError            1.0         0.53           0.13         104.0
+SyntaxError           1.0         1.00           0.00          77.5
+  (no 'LEAK' lines = no word/word-pair that is on >=95% of a class and absent elsewhere)
+
+--- audit: only_comments (3133 rows)
+               has_module  has_newline  has_//comment  median_chars
+p                                                                  
+Perfect              0.00         0.08           0.00          97.5
+SecurityError        1.00         1.00           0.00         220.0
+SemanticError        1.00         1.00           0.00         167.5
+StyleError           0.02         0.47           0.07          73.5
+SyntaxError          1.00         1.00           0.00          78.0
+  LEAK SecurityError: 3 tokens on >=95% of the class and in no other class, e.g. ['module security', 'security', 'security :']
+  (no 'LEAK' lines = no word/word-pair that is on >=95% of a class and absent elsewhere)
+
+--- audit: only_newlines (3133 rows)
+               has_module  has_newline  has_//comment  median_chars
+p                                                                  
+Perfect              0.00         0.00           0.00          97.0
+SecurityError        1.00         0.32           0.32         222.0
+SemanticError        1.00         0.00           0.00         156.5
+StyleError           0.02         0.26           0.13          76.0
+SyntaxError          1.00         0.00           0.00          62.5
+  LEAK SecurityError: 3 tokens on >=95% of the class and in no other class, e.g. ['module security', 'security', 'security :']
+  (no 'LEAK' lines = no word/word-pair that is on >=95% of a class and absent elsewhere)

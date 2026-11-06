@@ -1,0 +1,123 @@
+{
+  "run": "codebert_full",
+  "trainable_params": 124649477,
+  "total_params": 124649477,
+  "lr": 2e-05,
+  "epochs": 4,
+  "max_length": 256,
+  "device": "mps",
+  "val_by_epoch": [
+    {
+      "epoch": 1.0,
+      "eval_accuracy": 0.9319148936170213,
+      "eval_macro_f1": 0.8986780369161869
+    },
+    {
+      "epoch": 2.0,
+      "eval_accuracy": 0.9446808510638298,
+      "eval_macro_f1": 0.9059514102597823
+    },
+    {
+      "epoch": 3.0,
+      "eval_accuracy": 0.9702127659574468,
+      "eval_macro_f1": 0.9601472740850723
+    },
+    {
+      "epoch": 4.0,
+      "eval_accuracy": 0.9723404255319149,
+      "eval_macro_f1": 0.9599954797111587
+    }
+  ],
+  "best_checkpoint": "/Users/alexsmyro/dev/Medcollege/Thesis/experiments/only_modules/checkpoints/codebert_full/checkpoint-414",
+  "accuracy": 0.9723404255319149,
+  "macro_f1": 0.9599483204041934,
+  "per_class": {
+    "Perfect": {
+      "precision": 0.9855072463768116,
+      "recall": 0.9855072463768116,
+      "f1-score": 0.9855072463768116,
+      "support": 207.0
+    },
+    "SecurityError": {
+      "precision": 0.9506172839506173,
+      "recall": 0.9871794871794872,
+      "f1-score": 0.9685534591194969,
+      "support": 78.0
+    },
+    "SemanticError": {
+      "precision": 0.9142857142857143,
+      "recall": 0.8888888888888888,
+      "f1-score": 0.9014084507042254,
+      "support": 36.0
+    },
+    "StyleError": {
+      "precision": 0.9736842105263158,
+      "recall": 0.9736842105263158,
+      "f1-score": 0.9736842105263158,
+      "support": 114.0
+    },
+    "SyntaxError": {
+      "precision": 1.0,
+      "recall": 0.9428571428571428,
+      "f1-score": 0.9705882352941176,
+      "support": 35.0
+    },
+    "accuracy": 0.9723404255319149,
+    "macro avg": {
+      "precision": 0.9648188910278919,
+      "recall": 0.9556233951657293,
+      "f1-score": 0.9599483204041934,
+      "support": 470.0
+    },
+    "weighted avg": {
+      "precision": 0.9724732635370933,
+      "recall": 0.9723404255319149,
+      "f1-score": 0.9722733239829086,
+      "support": 470.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      204,
+      0,
+      0,
+      3,
+      0
+    ],
+    [
+      0,
+      77,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      4,
+      32,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      0,
+      111,
+      0
+    ],
+    [
+      0,
+      0,
+      2,
+      0,
+      33
+    ]
+  ],
+  "labels": [
+    "Perfect",
+    "SecurityError",
+    "SemanticError",
+    "StyleError",
+    "SyntaxError"
+  ]
+}

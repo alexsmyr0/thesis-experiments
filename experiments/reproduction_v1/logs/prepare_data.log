@@ -1,0 +1,13 @@
+Loaded 3337 rows
+Removed 0 leaked header rows
+Removed 16 duplicate snippets -> 3321 samples
+
+Split sizes (compare with thesis Table 1):
+               train  val  test  total
+primary_label                         
+Perfect          964  207   207   1378
+StyleError       533  114   115    762
+SecurityError    363   78    78    519
+SemanticError    280   60    60    400
+SyntaxError      183   40    39    262
+Total           2323  499   499   3321

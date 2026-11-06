@@ -1,0 +1,123 @@
+{
+  "run": "codebert_full",
+  "trainable_params": 124649477,
+  "total_params": 124649477,
+  "lr": 2e-05,
+  "epochs": 4,
+  "max_length": 256,
+  "device": "mps",
+  "val_by_epoch": [
+    {
+      "epoch": 1.0,
+      "eval_accuracy": 0.9799599198396793,
+      "eval_macro_f1": 0.9829933148035452
+    },
+    {
+      "epoch": 2.0,
+      "eval_accuracy": 0.9939879759519038,
+      "eval_macro_f1": 0.9959110450613025
+    },
+    {
+      "epoch": 3.0,
+      "eval_accuracy": 0.9899799599198397,
+      "eval_macro_f1": 0.9903301576988817
+    },
+    {
+      "epoch": 4.0,
+      "eval_accuracy": 0.9919839679358717,
+      "eval_macro_f1": 0.9917099462808665
+    }
+  ],
+  "best_checkpoint": "/Users/alexsmyro/dev/Medcollege/Thesis/reproduction/checkpoints/codebert_full/checkpoint-292",
+  "accuracy": 0.9879759519038076,
+  "macro_f1": 0.9918840579710146,
+  "per_class": {
+    "Perfect": {
+      "precision": 0.9855072463768116,
+      "recall": 0.9855072463768116,
+      "f1-score": 0.9855072463768116,
+      "support": 207.0
+    },
+    "SecurityError": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 78.0
+    },
+    "SemanticError": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 60.0
+    },
+    "StyleError": {
+      "precision": 0.9739130434782609,
+      "recall": 0.9739130434782609,
+      "f1-score": 0.9739130434782609,
+      "support": 115.0
+    },
+    "SyntaxError": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 39.0
+    },
+    "accuracy": 0.9879759519038076,
+    "macro avg": {
+      "precision": 0.9918840579710146,
+      "recall": 0.9918840579710146,
+      "f1-score": 0.9918840579710146,
+      "support": 499.0
+    },
+    "weighted avg": {
+      "precision": 0.9879759519038076,
+      "recall": 0.9879759519038076,
+      "f1-score": 0.9879759519038076,
+      "support": 499.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      204,
+      0,
+      0,
+      3,
+      0
+    ],
+    [
+      0,
+      78,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      60,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      0,
+      112,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      39
+    ]
+  ],
+  "labels": [
+    "Perfect",
+    "SecurityError",
+    "SemanticError",
+    "StyleError",
+    "SyntaxError"
+  ]
+}

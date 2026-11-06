@@ -1,0 +1,16 @@
+# Minimum versions. The exact versions behind the local (M2 Air) results are listed in README.md.
+# transformers>=5 is required: codebert_finetune.py uses warmup_steps=0.1 as a ratio, new in v5.
+torch>=2.4
+transformers>=5.0
+peft>=0.17
+datasets>=3.0
+accelerate>=1.0
+scikit-learn>=1.5
+pandas>=2.2
+numpy
+matplotlib
+seaborn
+
+# Apple Silicon only, for the Qwen LoRA step (src/qwen_lora.py, src/qwen_prompting.py):
+# mlx
+# mlx-lm

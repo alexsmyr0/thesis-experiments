@@ -1,0 +1,13 @@
+Run                      Thesis acc  Ours acc       Δ  Thesis F1  Ours F1       Δ
+---------------------------------------------------------------------------------
+tfidf_logreg                  0.950     0.834  -0.116      0.947    0.772  -0.175
+tfidf_logreg_balanced         0.940     0.849  -0.091      0.928    0.783  -0.145
+tfidf_svm                     0.972     0.883  -0.089      0.965    0.823  -0.142
+tfidf_svm_balanced            0.972     0.889  -0.083      0.965    0.820  -0.145
+tfidf_rf                      0.952     0.866  -0.086      0.947    0.822  -0.125
+tfidf_rf_balanced             0.948     0.864  -0.084      0.940    0.822  -0.118
+codebert_full                 0.988     0.972  -0.016      0.992    0.960  -0.032
+codebert_lora                 0.990     0.972  -0.018      0.993    0.957  -0.036
+prompting_zeroshot            0.499   not run
+prompting_fewshot_k1          0.591   not run
+qwen_lora                     0.972   not run
