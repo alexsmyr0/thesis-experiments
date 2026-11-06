@@ -5,8 +5,8 @@ __pycache__/
 .ipynb_checkpoints/
 
 # Big or regenerable: model weights, and the train/val/test splits that prepare_data.py rebuilds
-experiments/*/checkpoints/
-experiments/*/data/
+experiments/**/checkpoints/
+experiments/**/data/
 
 # Personal notes, not for the public repo
 THESIS_HANDOFF.md

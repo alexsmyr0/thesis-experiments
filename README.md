@@ -38,15 +38,18 @@ THESIS_CSV=$PWD/data/v2/neutral_all.csv THESIS_OUT=$PWD/experiments/neutral_all 
 
 ## Run on Kaggle
 
-1. Push this repo to GitHub (public, or private plus a `GITHUB_TOKEN` Kaggle secret, see the notebook).
+1. This public repo clones directly from GitHub `main`; no GitHub token or Kaggle Dataset is needed.
 2. On kaggle.com: **Create -> New Notebook -> File -> Import Notebook** and upload `notebooks/kaggle_codebert.ipynb`.
 3. Session options: **Accelerator = GPU T4 x2**, **Internet = On** (needs a phone-verified account).
-4. **Save Version -> Save & Run All (Commit)**, then close the tab.
+4. Run the setup and GPU-check cells first. Confirm GPU names and a source commit are printed without errors.
+   Then **Save Version -> Save & Run All (Commit)**; you can close the tab.
 5. When it finishes, download `results.zip` from the notebook's **Output** tab and unzip it into `experiments/`.
-   Commit the new `results/` and `logs/` folders.
+   The archive creates a new `kaggle_<timestamp>/` folder, so existing Mac results stay intact.
+   Commit its results, logs, `run_metadata.json`, and `pip_freeze.txt`; generated splits are ignored.
 
-The notebook clones this repo, installs `transformers>=5` and `peft`, runs `scripts/run_all.sh --codebert=both` for
-each dataset in `DATASETS`, deletes the checkpoints, and zips the results. Qwen/MLX steps do not run on Kaggle.
+The notebook clones this repo, installs `requirements.txt`, checks dependencies and CUDA, then runs `scripts/run_all.sh --codebert=both` for
+each dataset in `DATASETS`, deletes the checkpoints, and zips the results. Each run records its source commit,
+settings, GPU names and installed package versions. Qwen/MLX steps do not run on Kaggle.
 
 Notes on comparing runs:
 - On multi-GPU machines the script divides the per-GPU batch by the GPU count, so the effective batch stays 16.
@@ -58,3 +61,7 @@ Notes on comparing runs:
 
 torch 2.14.1, transformers 5.20.2, peft 0.21.2, datasets 5.1.0, accelerate 1.15.0, scikit-learn 1.9.1,
 pandas 3.0.6, numpy 2.5.4, mlx 0.32.4, mlx-lm 0.32.2.
+
+## Attribution
+
+Experiment code adapts the upstream Move Issue Classifier. See [NOTICE](NOTICE) for its copyright and MIT licence.
