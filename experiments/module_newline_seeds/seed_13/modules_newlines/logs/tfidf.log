@@ -1,0 +1,12 @@
+[tfidf_svm] accuracy=0.8915 macro_f1=0.8242
+    Perfect        F1=0.945
+    SecurityError  F1=0.872
+    SemanticError  F1=0.603
+    StyleError     F1=0.913
+    SyntaxError    F1=0.788
+[tfidf_svm_balanced] accuracy=0.8979 macro_f1=0.8372
+    Perfect        F1=0.956
+    SecurityError  F1=0.870
+    SemanticError  F1=0.647
+    StyleError     F1=0.913
+    SyntaxError    F1=0.800

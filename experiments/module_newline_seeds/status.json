@@ -1,5 +1,7 @@
 {
   "seeds_present": [
+    7,
+    13,
     42
   ],
   "expected_seeds": [
@@ -7,8 +9,8 @@
     13,
     42
   ],
-  "complete": false,
+  "complete": true,
   "paired_split_checks": "passed",
-  "metric_rows": 12,
+  "metric_rows": 36,
   "interpretation": "Exploratory three-seed replication; SD is not a confidence interval."
 }

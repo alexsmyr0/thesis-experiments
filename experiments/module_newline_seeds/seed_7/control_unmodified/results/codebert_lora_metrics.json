@@ -1,0 +1,139 @@
+{
+  "run": "codebert_lora",
+  "split_seed": 7,
+  "training_seed": 7,
+  "trainable_params": 1184261,
+  "total_params": 125833738,
+  "lr": 0.0005,
+  "epochs": 6,
+  "max_length": 256,
+  "device": "cuda",
+  "n_gpu": 2,
+  "fp16": false,
+  "torch": "2.11.0+cu130",
+  "transformers": "5.20.2",
+  "val_by_epoch": [
+    {
+      "epoch": 1.0,
+      "eval_accuracy": 0.9574468085106383,
+      "eval_macro_f1": 0.967408397477031
+    },
+    {
+      "epoch": 2.0,
+      "eval_accuracy": 0.9872340425531915,
+      "eval_macro_f1": 0.9917374517374518
+    },
+    {
+      "epoch": 3.0,
+      "eval_accuracy": 0.9765957446808511,
+      "eval_macro_f1": 0.9846852805638384
+    },
+    {
+      "epoch": 4.0,
+      "eval_accuracy": 0.9914893617021276,
+      "eval_macro_f1": 0.9945371000680735
+    },
+    {
+      "epoch": 5.0,
+      "eval_accuracy": 0.9936170212765958,
+      "eval_macro_f1": 0.9958944844124702
+    },
+    {
+      "epoch": 6.0,
+      "eval_accuracy": 0.9936170212765958,
+      "eval_macro_f1": 0.9958944844124702
+    }
+  ],
+  "best_checkpoint": "/kaggle/working/experiments/kaggle_20261106T151136_362139Z/seed_7/control_unmodified/checkpoints/codebert_lora/checkpoint-690",
+  "accuracy": 0.9851063829787234,
+  "macro_f1": 0.9903397426940812,
+  "per_class": {
+    "Perfect": {
+      "precision": 0.9672897196261683,
+      "recall": 1.0,
+      "f1-score": 0.9833729216152018,
+      "support": 207.0
+    },
+    "SecurityError": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 78.0
+    },
+    "SemanticError": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 36.0
+    },
+    "StyleError": {
+      "precision": 1.0,
+      "recall": 0.9385964912280702,
+      "f1-score": 0.9683257918552036,
+      "support": 114.0
+    },
+    "SyntaxError": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 35.0
+    },
+    "accuracy": 0.9851063829787234,
+    "macro avg": {
+      "precision": 0.9934579439252337,
+      "recall": 0.987719298245614,
+      "f1-score": 0.9903397426940812,
+      "support": 470.0
+    },
+    "weighted avg": {
+      "precision": 0.9855935573672698,
+      "recall": 0.9851063829787234,
+      "f1-score": 0.984994329884766,
+      "support": 470.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      207,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      78,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      36,
+      0,
+      0
+    ],
+    [
+      7,
+      0,
+      0,
+      107,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      35
+    ]
+  ],
+  "labels": [
+    "Perfect",
+    "SecurityError",
+    "SemanticError",
+    "StyleError",
+    "SyntaxError"
+  ]
+}

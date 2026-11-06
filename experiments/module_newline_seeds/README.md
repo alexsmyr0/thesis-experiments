@@ -55,3 +55,27 @@ with the Kaggle study: dependency and hardware differences can affect scores.
 
 Three seeds are an exploratory replication, not strong statistical evidence.
 Report all seeds and paired effects; the sample SD is not a confidence interval.
+
+## Completed results: seeds 7, 13 and 42
+
+Seeds 7 and 13 completed in [Kaggle Version 4](https://www.kaggle.com/code/alexsmyroglou/thesis-experiments-codebert?scriptVersionId=366315179), runtime 40m 11s. Source commit: `79ff9db2c42e88bda7ed3537eb84db9e03a4a35a`. Hardware and recorded package versions match seed 42. All 36 model/dataset/seed metrics are present. The 24 new prediction files reproduce their confusion matrices, accuracy and macro-F1; all split manifests passed pairing checks.
+
+Mean accuracy / mean macro-F1 (%), with each seed weighted equally:
+
+| Dataset | CodeBERT LoRA | TF-IDF + LinearSVC | LinearSVC balanced |
+|---|---:|---:|---:|
+| Control | 99.15 / 99.31 | 95.60 / 94.62 | 95.60 / 94.69 |
+| Modules altered | 97.80 / 96.67 | 89.72 / 83.95 | 90.21 / 84.75 |
+| Newlines reduced | 96.88 / 95.26 | 95.60 / 94.62 | 95.60 / 94.69 |
+| Modules + newlines | 94.47 / 91.57 | 89.72 / 83.95 | 90.21 / 84.75 |
+
+Macro-F1 mean ± sample SD (%; SD expressed in percentage points):
+
+| Dataset | CodeBERT LoRA | TF-IDF + LinearSVC | LinearSVC balanced |
+|---|---:|---:|---:|
+| Control | 99.31 ± 0.37 | 94.62 ± 1.06 | 94.69 ± 1.63 |
+| Modules altered | 96.67 ± 0.72 | 83.95 ± 2.79 | 84.75 ± 3.39 |
+| Newlines reduced | 95.26 ± 1.31 | 94.62 ± 1.06 | 94.69 ± 1.63 |
+| Modules + newlines | 91.57 ± 0.68 | 83.95 ± 2.79 | 84.75 ± 3.39 |
+
+For CodeBERT, every seed shows lower macro-F1 for each treatment than its paired control. The combined-treatment drop is 7.02–8.21 percentage points (mean 7.74). Module-only and combined-treatment LinearSVC metrics match exactly within every seed; newline-only matches control. These results support repeatability on these three seeds, not statistical certainty or generalization to unseen projects.
